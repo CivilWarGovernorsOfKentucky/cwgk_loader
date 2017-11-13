@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'cwgk_loader'
+require 'dotenv'
+
+CwgkLoader::Loader.start(ARGV)

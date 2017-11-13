@@ -1,0 +1,5 @@
+require 'cwgk_loader/version'
+require 'cwgk_loader/constants'
+require 'cwgk_loader/loader'
+require 'cwgk_loader/utils'
+require 'cwgk_loader/cwgk_submitter'

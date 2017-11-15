@@ -2,6 +2,21 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cwgk_loader`. To experiment with that code, run `bin/console` for an interactive prompt.
 
+## Installation
+
+* Set up github repository for TEI files 
+
+git clone https://github.com/CivilWarGovernorsOfKentucky/TestDocuments
+
+* Create a config file
+
+```
+bundle exec exe/cwgk_loader upload -c /home/omeka/cwgk_loader/config-test.txt
+
+```
+
+bundle exec exe/cwgk_loader upload -c /home/omeka/cwgk_loader/config-test.txt N00000247:N002001:N001777
+
 TODO: Delete this and the text above, and describe your gem
 
 ## Installation

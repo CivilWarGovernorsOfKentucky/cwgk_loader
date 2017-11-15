@@ -25,7 +25,6 @@ module CwgkLoader
       @elements_map[:Title] = {id: 50, element_set_id: 1}
       @elements_map[:Identifier] = {id: 43, element_set_id: 1}
       @item_types = Utils.get_item_types ENV['API_ROOT']
-      @Logger = Logger.new STDOUT
     end
 
     def submit_entity(file)
@@ -54,7 +53,7 @@ module CwgkLoader
         item_id = JSON.parse(response.body)['id']
         Utils.upload_file file, item_id, ENV['API_ROOT'], ENV['API_KEY']
       else
-        @Logger.warn "PUT/POST #{entity.identifier} failed: " + response.body
+        Utils.logger.warn "PUT/POST #{entity.identifier} failed: " + response.body
       end
     end
 
@@ -63,7 +62,7 @@ module CwgkLoader
       doc = Nokogiri::XML(File.open(file))
       collection_nodes = doc.xpath('//tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:collection/text()', tei: TEI_NS)
       if collection_nodes.size == 0
-        @Logger.warn "Couldn't find collection name in TEI. #{file} \n Please check xpath //teiHeader/fileDesc/sourceDesc/msDesc/msIdentifier/collection"
+        Utils.logger.warn "Couldn't find collection name in TEI. #{file} \n Please check xpath //teiHeader/fileDesc/sourceDesc/msDesc/msIdentifier/collection"
         return
       else
         collection_name = collection_nodes.first.to_s.gsub(/\s+/, ' ').strip.to_sym
@@ -71,7 +70,7 @@ module CwgkLoader
           document.collection = { id: @collection_ids[collection_name] }
         else
           # TODO: create a new collection
-          @Logger.warn "Couldn't find collection in Omeka: #{collection_name}"
+          Utils.logger.warn "Couldn't find collection in Omeka: #{collection_name}"
           return
         end
       end
@@ -95,7 +94,7 @@ module CwgkLoader
         item_id = JSON.parse(response.body)['id']
         Utils.upload_file file, item_id, ENV['API_ROOT'], ENV['API_KEY']
       else
-        @Logger.warn "PUT/POST #{document.identifier} failed: " + response.body
+        Utils.logger.warn "PUT/POST #{document.identifier} failed: " + response.body
       end
     end
 
@@ -103,7 +102,7 @@ module CwgkLoader
       nodes = tei_doc.xpath(xpath, tei: TEI_NS)
       elements = []
       if nodes.size == 0
-        @Logger.warn "No nodes found: #{element_name}, #{xpath}"
+        Utils.logger.warn "No nodes found: #{element_name}, #{xpath}"
       else
         values = nodes.map { |node|
           if xpath == '//tei:body' or xpath == '//tei:back/tei:ab/tei:bibl'

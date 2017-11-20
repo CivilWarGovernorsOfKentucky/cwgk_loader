@@ -4,55 +4,86 @@ Welcome to your new gem! In this directory, you'll find the files you need to be
 
 ## Installation
 
-* Set up github repository for TEI files 
+The gem is not published on RubyGem.org yet. For now, please build it locally. 
+
+Run this only if you haven't cloned the git repository yet.
+
+```
+git clone https://github.com/CivilWarGovernorsOfKentucky/cwgk_loader.git 
+``` 
+
+To get new updates and build the gem
+
+```
+cd cwgk_loader
+git pull
+gem build cwgk_loader.gemspec
+```
+
+Last, install the gem. Check the gem version that you've built. It is the last line of the output of the
+`gem build cwgk_loader.gemspec` command. Then run the following to install it. 
+
+``` 
+gem install cwgk_loader-x.x.x.gem
+```
+
+Check if everything has been installed correctly - use command `cwgk_loader`
+
+``` 
+# cwgk_loader
+Commands:
+  cwgk_loader help [COMMAND]                   # Describe available commands or one specific command
+  cwgk_loader upload [ID] -c, --config=CONFIG  # upload files. It can also upload a single file, or multiple files separated by ;.
+```
+
+## Usage 
+
+First, set up github repository for TEI files 
 
 git clone https://github.com/CivilWarGovernorsOfKentucky/TestDocuments
 
-* Create a config file
+Then create a config file. It should have the following format. Fill in with your settings. 
+
+``` config-example.txt
+API_ROOT=http://localhost/api
+API_KEY=27e4faaa1f3a915957e1773ccfbcf58945899917
+
+GIT_ROOT_DIR=/path/to/TestDocuments/
+GIT_USERNAME=your_git_username
+GIT_EMAIL=yourmail@example.com
+
+# DATABASE
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_NAME=omeka_db
+DB_USERNAME=omeka_user
+DB_PASSWORD=omeka_password
+```
+
+To upload a single file
 
 ```
-bundle exec exe/cwgk_loader upload -c /home/omeka/cwgk_loader/config-test.txt
-
+cwgk_loader -c <config-file.txt> <tei> 
 ```
 
-bundle exec exe/cwgk_loader upload -c /home/omeka/cwgk_loader/config-test.txt N00000247:N002001:N001777
+Replace `<config-file.txt>` with the path of your config file. 
+Replace `<tei>` with the identifier of the tei file, or the file name. For example, to upload `N00000247.xml`, 
+you can either use 
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'cwgk_loader'
+``` 
+cwgk_loader -c config.txt N00000247
 ```
 
-And then execute:
+or 
 
-    $ bundle
+```
+cwgk_loader -c config.txt N00000247.xml
+```
 
-Or install it yourself as:
+To upload multiple files, concatenate them with `:`. For example, the following will upload three files.  
 
-    $ gem install cwgk_loader
+```
+cwgk_loader -c config.txt N00000247:O00001186:KYR-0001-007-0306
+```
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/cwgk_loader. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the CwgkLoader project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/cwgk_loader/blob/master/CODE_OF_CONDUCT.md).
+Note that you can mix files with different entity types, or entity tei with document tei files.  

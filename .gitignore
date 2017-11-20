@@ -12,3 +12,6 @@
 .ruby-version
 .ruby-gemset
 .idea
+cwgk_loader-*.gem
+/config*.txt
+/config.txt

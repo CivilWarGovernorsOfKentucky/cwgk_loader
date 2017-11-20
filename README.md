@@ -63,7 +63,7 @@ DB_PASSWORD=omeka_password
 To upload a single file
 
 ```
-cwgk_loader -c <config-file.txt> <tei> 
+cwgk_loader upload -c <config-file.txt> <tei> 
 ```
 
 Replace `<config-file.txt>` with the path of your config file. 
@@ -71,19 +71,19 @@ Replace `<tei>` with the identifier of the tei file, or the file name. For examp
 you can either use 
 
 ``` 
-cwgk_loader -c config.txt N00000247
+cwgk_loader upload -c config.txt N00000247
 ```
 
 or 
 
 ```
-cwgk_loader -c config.txt N00000247.xml
+cwgk_loader upload -c config.txt N00000247.xml
 ```
 
 To upload multiple files, concatenate them with `:`. For example, the following will upload three files.  
 
 ```
-cwgk_loader -c config.txt N00000247:O00001186:KYR-0001-007-0306
+cwgk_loader upload -c config.txt N00000247:O00001186:KYR-0001-007-0306
 ```
 
 Note that you can mix files with different entity types, or entity tei with document tei files.  

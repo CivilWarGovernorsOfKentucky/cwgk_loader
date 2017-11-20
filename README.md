@@ -45,8 +45,8 @@ git clone https://github.com/CivilWarGovernorsOfKentucky/TestDocuments
 Then create a config file. It should have the following format. Fill in with your settings. 
 
 ``` config-example.txt
-API_ROOT=http://localhost/api
-API_KEY=27e4faaa1f3a915957e1773ccfbcf58945899917
+API_ROOT=YOUR_API_ROOT_USUALLY_http://omeka_site/api
+API_KEY=YOUR_API_KEY
 
 GIT_ROOT_DIR=/path/to/TestDocuments/
 GIT_USERNAME=your_git_username

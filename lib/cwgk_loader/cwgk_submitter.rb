@@ -79,7 +79,7 @@ module CwgkLoader
       document.identifier = doc.xpath('//tei:TEI/@xml:id', tei: TEI_NS).first.to_s
 
       item_id = @document_ids[document.identifier.to_sym]
-      document.item_type = { id: 18 }
+      document.item_type = { id: item_type(document.identifier) }
       document.element_texts = DOCUMENT_ELEMENT_MAP.collect { |name, xpath|
         build_element name, xpath, doc
       }.flatten
@@ -137,6 +137,8 @@ module CwgkLoader
         return @item_types['CWGK Place']
       elsif id.start_with?('G')
         return @item_types['CWGK Geographical Feature']
+      elsif id.start_with?('KYR')
+        return @item_types['CWGK Early Access Document']
       else
         return nil
       end

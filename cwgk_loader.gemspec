@@ -29,12 +29,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "git"
-  spec.add_runtime_dependency "mysql2"
-  spec.add_runtime_dependency "rest-client"
-  spec.add_runtime_dependency "nokogiri"
-  spec.add_runtime_dependency "thor"
-  spec.add_runtime_dependency "dotenv"
+  spec.add_runtime_dependency "git", "~> 1.3"
+  spec.add_runtime_dependency "mysql2", "~> 0.4"
+  spec.add_runtime_dependency "rest-client", "~> 2.0"
+  spec.add_runtime_dependency "nokogiri", "~> 1.8"
+  spec.add_runtime_dependency "thor", "~> 0.20"
+  spec.add_runtime_dependency "dotenv", "~> 2.2"
   spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"

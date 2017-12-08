@@ -23,8 +23,8 @@ module CwgkLoader
   }
 
   PERSON_ELEMENT_MAP = {
-      'Birth Date':        '//tei:particDesc/tei:person/tei:birth/@when', # Birth date
-      'Death Date':        '//tei:particDesc/tei:person/tei:death/@when', # Death date
+      'Birth Date':        '//tei:particDesc/tei:person/tei:event[@type="birth"]/tei:ab/text()', # Birth date
+      'Death Date':        '//tei:particDesc/tei:person/tei:event[@type="death"]/tei:ab/text()', # Death date
       'Name':              '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Name
       'Entity Type':       '//tei:teiHeader/tei:profileDesc/tei:textClass/tei:keywords/tei:term[@type="type"]/text()' ,  # Entity Type
       'Identifier':        '//tei:particDesc/tei:person/@xml:id',  # Dublin Core / Identifier
@@ -42,8 +42,8 @@ module CwgkLoader
       'Title':             '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Dublin Core / Title
       'Biographical Text': '//tei:body',  # Biographical text
       'Bibliography':      '//tei:back/tei:ab/tei:bibl' ,  # Bibliography
-      'Creation Date':     '//tei:particDesc/tei:org/tei:event[@type="begun"]/@when', # Creation Date
-      'Dissolution Date':  '//tei:particDesc/tei:org/tei:event[@type="ended"]/@when'  # Dissolution Date
+      'Creation Date':     '//tei:particDesc/tei:org/tei:event[@type="begun"]/tei:ab/text()', # Creation Date
+      'Dissolution Date':  '//tei:particDesc/tei:org/tei:event[@type="ended"]/tei:ab/text()'  # Dissolution Date
   }
 
   PLACE_ELEMENT_MAP = {
@@ -53,8 +53,8 @@ module CwgkLoader
       'Title':             '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Dublin Core / Title
       'Biographical Text': '//tei:body',  # Biographical text
       'Bibliography':      '//tei:back/tei:ab/tei:bibl',  # Bibliography
-      'Latitude':          '//tei:particDesc/tei:place/tei:placeName/tei:location/tei:geo', # Latitude
-      'Longitude':         '//tei:particDesc/tei:place/tei:placeName/tei:location/tei:geo'  # Longitude
+      'Latitude':          '//tei:settingDesc/tei:place/tei:placeName/tei:location/tei:geo', # Latitude
+      'Longitude':         '//tei:settingDesc/tei:place/tei:placeName/tei:location/tei:geo'  # Longitude
   }
 
   GEOFEATURE_ELEMENT_MAP = {

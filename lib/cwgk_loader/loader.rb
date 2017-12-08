@@ -17,28 +17,27 @@ module CwgkLoader
 
       submitter = CwgkSubmitter.new
       if doc_id.nil?
-        Utils.logger.info "Upload files in #{ENV['GIT_ROOT_DIR']}/biography_xml that is updated less than 1 day ago"
-        entities_modified = Dir["#{ENV['GIT_ROOT_DIR']}/biography_xml/*.xml"].select { |f| File.file?(f) and File.mtime(f) > (Time.now - 60*60*24*1) }
-        entities_modified.each do |entity_file|
-          Utils.logger.info "Uploading #{File.basename(entity_file)}"
-          submitter.submit_entity entity_file
-        end
-
-        Utils.logger.info "Upload files in #{ENV['GIT_ROOT_DIR']}/document_xml that is updated less than 1 day ago"
-        documents_modified = Dir["#{ENV['GIT_ROOT_DIR']}/document_xml/*.xml"].select { |f| File.file?(f) and File.mtime(f) > (Time.now - 60*60*24*1) }
-        # read the documents, validate and link entities.
-        documents_modified.each do |document_file|
-          Utils.logger.info "Uploading #{File.basename(document_file)}"
-          submitter.submit_document document_file
+        Utils.logger.info "Upload files in #{ENV['GIT_ROOT_DIR']}/xml that is updated less than 1 day ago"
+        files_modified = Dir["#{ENV['GIT_ROOT_DIR']}/xml/*.xml"].select { |f| File.file?(f) and File.mtime(f) > (Time.now - 60*60*24*1) }
+        files_modified.each do |xml_file|
+          doc_id = File.basename(xml_file)
+          Utils.logger.info "Uploading #{doc_id}"
+          if doc_id.start_with? 'KYR'
+            submitter.submit_document xml_file
+          elsif 'NOPG'.include? doc_id[0]
+            submitter.submit_entity xml_file
+          else
+            Utils.logger.error "Invalid filename: #{doc_id}.xml"
+          end
         end
       else
         doc_id.split(':').each do |doc_id|
           filename = doc_id.end_with?('.xml')? doc_id : doc_id + '.xml'
           Utils.logger.info "Uploading #{filename}"
           if doc_id.start_with? 'KYR'
-            submitter.submit_document "#{ENV['GIT_ROOT_DIR']}/document_xml/#{filename}"
+            submitter.submit_document "#{ENV['GIT_ROOT_DIR']}/xml/#{filename}"
           elsif 'NOPG'.include? doc_id[0]
-            submitter.submit_entity "#{ENV['GIT_ROOT_DIR']}/biography_xml/#{filename}"
+            submitter.submit_entity "#{ENV['GIT_ROOT_DIR']}/xml/#{filename}"
           else
             Utils.logger.error "Invalid identifier: #{doc_id}"
           end

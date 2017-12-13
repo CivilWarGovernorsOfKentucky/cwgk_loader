@@ -138,7 +138,7 @@ module CwgkLoader
       elsif id.start_with?('G')
         return @item_types['CWGK Geographical Feature']
       elsif id.start_with?('KYR')
-        return @item_types['CWGK Early Access Document']
+        return @item_types['CWGK Document']
       else
         return nil
       end

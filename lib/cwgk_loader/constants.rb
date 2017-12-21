@@ -49,7 +49,7 @@ module CwgkLoader
   PLACE_ELEMENT_MAP = {
       'Name':              '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Name
       'Entity Type':       '//tei:teiHeader/tei:profileDesc/tei:textClass/tei:keywords/tei:term[@type="type"]/text()' ,  # Entity Type
-      'Identifier':        '//tei:particDesc/tei:place/@xml:id',  # Dublin Core / Identifier
+      'Identifier':        '//tei:settingDesc/tei:place/@xml:id',  # Dublin Core / Identifier
       'Title':             '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Dublin Core / Title
       'Biographical Text': '//tei:body',  # Biographical text
       'Bibliography':      '//tei:back/tei:ab/tei:bibl',  # Bibliography
@@ -60,7 +60,7 @@ module CwgkLoader
   GEOFEATURE_ELEMENT_MAP = {
       'Name':              '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Name
       'Entity Type':       '//tei:teiHeader/tei:profileDesc/tei:textClass/tei:keywords/tei:term[@type="type"]/text()' ,  # Entity Type
-      'Identifier':        '//tei:particDesc/tei:place/@xml:id',  # Dublin Core / Identifier
+      'Identifier':        '//tei:settingDesc/teiDesc/tei:place/@xml:id',  # Dublin Core / Identifier
       'Title':             '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level="a"][@type="main"]/text()' ,  # Dublin Core / Title
       'Biographical Text': '//tei:body',  # Biographical text
       'Bibliography':      '//tei:back/tei:ab/tei:bibl'   # Bibliography

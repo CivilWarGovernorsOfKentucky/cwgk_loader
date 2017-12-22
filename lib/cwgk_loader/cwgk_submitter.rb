@@ -112,7 +112,7 @@ module CwgkLoader
           elsif element_name == :Longitude
             node.content.to_s.split[1].strip
           else
-            node.to_s.gsub(/\s+/, ' ').strip
+            node.content.to_s.gsub(/\s+/, ' ').strip
           end
         }.uniq
         elements = values.map { |value|

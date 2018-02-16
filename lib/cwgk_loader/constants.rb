@@ -4,7 +4,7 @@ module CwgkLoader
   DOCUMENT_ELEMENT_MAP = {
       'Accession Number':     '//tei:TEI/@xml:id',
       'Document Title':       '//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@type="main"]/text()',
-      'Editorial Notes':      '//tei:notesStmt/tei:note[@type="editorial"]/text()',
+      'Editorial Note':      '//tei:notesStmt/tei:note[@type="editorial"]/text()',
       'Source Country':       '//tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:country/text()',
       'Source State':         '//tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:region/text()',
       'Source City':          '//tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msIdentifier/tei:settlement/text()',
